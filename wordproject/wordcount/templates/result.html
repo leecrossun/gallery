@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+            @font-face { font-family: 'NeoDunggeunmo'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff'); font-weight: normal; font-style: normal; }
+            * {
+                font-family: 'NeoDunggeunmo';
+            }
+            .subpage {
+                border: 1px solid rgb(252, 128, 231);
+                padding: 10px;
+                margin: 10px;;
+                background-color: rgb(242, 210, 255);
+                color: blueviolet;
+            }
+            .page, .button {
+                border: 1px solid rgb(206, 128, 252);
+                padding: 10px;
+                margin: 10px 200px 10px 5px;
+                box-shadow: 5px 5px rgb(247, 32, 211);
+                background-color: rgb(255, 210, 237);
+                font-style: italic;
+                color: blueviolet;
+            }
+            .button:hover {
+                border: 1px solid rgb(252, 128, 231);
+                padding: 10px;
+                margin: 10px 200px 10px 5px;
+                box-shadow: 5px 5px rgb(186, 32, 247);
+                background-color: rgb(242, 210, 255);
+                font-style: italic;
+                color: blueviolet;
+            }
+        </style>
+    </head>
+    <body>
+        <br><br>
+        <a class="button" href="{% url 'home' %}">다시 작성하기</a>
+        <br>
+        <br>
+        <div class="page">
+        <h1>결과</h1>
+        <div class="subpage">
+            <h3>당신이 입력한 단어는 총 {{total}} 개입니다.</h3>
+        </div>
+        </div><br>
+        <div class="page">
+        <h3>입력한 텍스트 전문</h3>
+        <div class="subpage">
+            {{full}}
+        </div>
+        </div><br>
+        <div class="page">
+        <h3>단어의 종류와 사용횟수</h3>
+        <div class="subpage">
+            {% for word, howmany in dictionary %}
+                {{word}} : {{howmany}}
+                <br>
+            {% endfor %}
+        </div>
+        </div>
+    </body>
+</html>
