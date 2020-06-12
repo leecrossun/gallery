@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<br>
+<div class="card">
+<h2>{{details.title}}</h2>
+{% if details.image %}
+        <img width="300px" src="{{ details.image.url }}" alt="bookimg">
+{% endif %}<br><br>
+{{details.reference}}
+</div>
+</body>
+</html>
+{% endblock %}
