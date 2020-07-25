@@ -6,13 +6,16 @@ from django.core.paginator import Paginator
 def home(request):
     return render(request, 'home.html')
 
-def gallery(request):
+def main(request):
+    return render(request, 'main.html')
+
+def review(request):
     posts = Post.objects
     post_list=Post.objects.all()
     paginator = Paginator(post_list, 5) # 페이지 나누기 (객체 3개씩)
     page = request.GET.get('page') # 요청한 페이지 값
     pages = paginator.get_page(page) # 해당 페이지 가져오기
-    return render(request, 'gallery.html', {'posts':posts, 'pages':pages})
+    return render(request, 'review.html', {'posts':posts, 'pages':pages})
 
 def detail(request, blog_id):
     details = get_object_or_404(Post, pk=blog_id)
@@ -23,7 +26,7 @@ def create(request):
         form = BlogPost(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=True)
-            return redirect('gallery')
+            return redirect('review')
         return render(request, 'new.html', {'form':form})
     else:
         form = BlogPost()
@@ -34,10 +37,10 @@ def update (request, pk):
     form = BlogPost(request.POST,request.FILES, instance=blog)
     if form.is_valid():
         form.save()
-        return redirect('gallery')
+        return redirect('review')
     return render(request, 'new.html', {'form':form})
 
 def delete (request, pk):
     blog = get_object_or_404(Post, pk = pk)
     blog.delete()
-    return redirect('gallery')
+    return redirect('review')

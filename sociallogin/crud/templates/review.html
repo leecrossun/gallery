@@ -6,7 +6,7 @@
     {% for posts in pages %}
     <figure>
         {% if posts.image %}
-        <img src="{{ posts.image.url }}">
+        <img src="{{ posts.image_thumbnail.url }}">
         {% endif %}
         <figcaption>{{posts.title}}</figcaption>
         <hr>
@@ -19,20 +19,6 @@
     </figure>
     {% endfor %}
 </div>
-<!--
-    {% for posts in pages %}
-    <br><br>
-    <div class="card">
-        <h2>{{posts.title}}</h2>
-        {% if posts.image %}
-        <img width="300px" src="{{ posts.image.url }}" alt="bookimg">
-        {% endif %}
-        <p class="article">{{posts.summary}}<a href="{% url 'detail' posts.id %}">....more</a></p>
-        <br><br>
-        <a class="btn" href="{% url 'update' posts.id %}" >수정</a>  에러발생 : 여기서 id값은 이 posts객체의 id이므로 posts.id를 해서 인자로 넘겨주어야 한다.
-        <a class="btn" href = "{% url 'delete' posts.id %}"> 삭제 </a><br><br>
-    </div>
-    {% endfor %} -->
 <br><br>
     {%if pages.has_previous%}
         <a href="?page=1">First</a>
